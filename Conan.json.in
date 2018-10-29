@@ -1,0 +1,11 @@
+{
+    \"Name\" : \"Conan\",
+    \"Version\" : \"0.0.1\",
+    \"CompatVersion\" : \"0.0.1\",
+    \"Vendor\" : \"Kamil Zaripov\",
+    \"Copyright\" : \"(C) Kamil Zaripov\",
+    \"License\" : \"LGPLv3\",
+    \"Description\" : \"Conan C / C++ Package Manager integration\",
+    \"Url\" : \"https://github.com/tanshihaj/qtcreator-conanplugin\",
+    $$dependencyList
+}
