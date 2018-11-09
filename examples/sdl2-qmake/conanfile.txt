@@ -1,0 +1,2 @@
+[requires]
+sdl2/[>2.0.0]@bincrafters/stable
