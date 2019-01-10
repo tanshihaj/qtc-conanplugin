@@ -126,7 +126,7 @@ void InstallStep::updateRecepiePath() {
 
 InstallStepFactory::InstallStepFactory() {
     registerStep<InstallStep>(Constants::C_CONANINSTALLSTEP_ID);
-    setDisplayName(tr("Conan install Step"));
+    setDisplayName(QObject::tr("Conan install Step"));
     setSupportedStepList(ProjectExplorer::Constants::BUILDSTEPS_BUILD);
     setRepeatable(false);
 }
