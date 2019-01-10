@@ -5,7 +5,7 @@ git:
 
 branches:
   only:
-  - travisci_test
+  - develop
   #  - /^v\d+\.\d+(\.\d+)?$/
 
 env:
@@ -40,6 +40,7 @@ deploy:
   api_key:
     secure: aNWbvyz7vT9LsP2ksG9XheKx/4PKrCH1xRPq9Tsi1z6AZjBa0EhgqhuOvANSel3JDyzcww78ZmmCTnqCKMeJVRqlB0pA3fyqmwcCwQ3QtvuElUiNh/LHBkymXffUfev6TiYHLJPL3juZV81NBaZVA5q4GkjR3BQ5XEH4IfEn2XHxL8czKrs2rr6lYzVvlt7iyEUxX766FLv5WWyzF1Tj1aKun+9whjAwl3CaurWq0ehCN3DnemGgArGRIwPhNXpcAeb8s9HZuO43tHpC0Mn86fJs/U6T7UvyjMU9gE5UvU8iTR99eMyHvP5ySTlxzELVVqJfiFSwcsv3SWwrlPLHasVr7sEayCgHWwvsxVOA1eXXFwFMCo4DHQF/79EPVr8X9a9g9l7qp7NdniFxFbE4k8cS0yUX9+S8TsdLhOm4aE/MJPP5SUY4eYjIZ92Oj8YjSsZ+boIbwCjHPjLIr9uhU8ejBohpXOJ9oR+hiXyuaozn268f7ka1AD6PyMfdqDrxk0EZLyinGxIlzTkkJ0c3cOEqc0DVsftXMV+jLynueve8zvHPKvkOeh9CgJ8d0AdeiS6brKrOKvewmntdM+0ND6dPYshbjtwLJmdlvUcB3dceLNHU7zRUV4r8RRZ52E4kFOLZ9BqzKKfRyDQ/WekKB+EpIaRPvPnC0gRx7g/B2PA=
   on:
+    branch: master
     tags: true
   file_glob: true
   file:
