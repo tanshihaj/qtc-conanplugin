@@ -10,6 +10,7 @@ branches:
 
 env:
   - VERSION="$TRAVIS_TAG" QT_VERSION="5.12.0" QTC_VERSION="4.8.0"
+  - VERSION="$TRAVIS_TAG" QT_VERSION="5.12.0" QTC_VERSION="4.7.0"
 
 # for some reason qt-creator packages is archives as 7z archives for all operation systems,
 # so we need p7zip for macOS and Ubnuntu
