@@ -5,12 +5,20 @@ git:
 
 branches:
   only:
-  - develop
-  #  - /^v\d+\.\d+(\.\d+)?$/
+#    - develop
+    - /^v\d+\.\d+(\.\d+)?$/
+
+os:
+- linux
+- osx
+- windows
+
+dist: xenial
 
 env:
   - VERSION="$TRAVIS_TAG" QT_VERSION="5.12.0" QTC_VERSION="4.8.0"
   - VERSION="$TRAVIS_TAG" QT_VERSION="5.12.0" QTC_VERSION="4.7.0"
+
 
 # for some reason qt-creator packages is archives as 7z archives for all operation systems,
 # so we need p7zip for macOS and Ubnuntu
@@ -23,18 +31,12 @@ addons:
     packages:
     - p7zip
 
-os:
-  - linux
-  - osx
-  - windows
-
-dist: xenial
-
 install:
   - ./util/prepare.sh
 
 script:
   - ./util/build.sh
+
 
 deploy:
   provider: releases
@@ -48,7 +50,6 @@ deploy:
     - "Conan-*.tar.gz"
     - "Conan-*.zip"
   skip_cleanup: true
-  draft: true
 
 notifications:
   email: false
