@@ -9,7 +9,7 @@ branches:
   #  - /^v\d+\.\d+(\.\d+)?$/
 
 env:
-  - VERSION="$TRAVIS_TAG"
+  - VERSION="$TRAVIS_TAG" QTC_VERSION="4.8.0"
 
 # for some reason qt-creator packages is archives as 7z archives for all operation systems,
 # so we need p7zip for macOS and Ubnuntu

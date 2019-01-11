@@ -14,7 +14,12 @@ if [ ! -d "qtcreator" ]; then
     if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then SUBFOLDER="linux_gcc_64_rhel72" ; fi
     if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then SUBFOLDER="windows_vs2015_32" ; fi
 
-    wget -cq http://download.qt.io/official_releases/qtcreator/4.8/4.8.0/installer_source/$SUBFOLDER/qtcreator.7z -O download/qtcreator.7z
+    QTC_VERSION_MAJOR=`echo $QTC_VERSION | cut -d. -f1`
+    QTC_VERSION_MINOR=`echo $QTC_VERSION | cut -d. -f2`
+    QTC_VERSION_PATCH=`echo $QTC_VERSION | cut -d. -f3`
+    QTC_VERSION_SHORT=$QTC_VERSION_MAJOR.$QTC_VERSION_MINOR
+
+    wget -cq http://download.qt.io/official_releases/qtcreator/$QTC_VERSION_SHORT/$QTC_VERSION/installer_source/$SUBFOLDER/qtcreator.7z -O download/qtcreator.7z
     if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         7z x download/qtcreator.7z -oqtcreator/bin > /dev/null
     else
@@ -22,7 +27,7 @@ if [ ! -d "qtcreator" ]; then
     fi
 
     # since qt-creator binaries by default doesn't contain sources and .lib files we need to download dev package
-    wget -cq http://download.qt.io/official_releases/qtcreator/4.8/4.8.0/installer_source/$SUBFOLDER/qtcreator_dev.7z -O download/qtcreator_dev.7z
+    wget -cq http://download.qt.io/official_releases/qtcreator/$QTC_VERSION_SHORT/$QTC_VERSION/installer_source/$SUBFOLDER/qtcreator_dev.7z -O download/qtcreator_dev.7z
     7z x download/qtcreator_dev.7z -oqtcreator -y > /dev/null
 fi
 
