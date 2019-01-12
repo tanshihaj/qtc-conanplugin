@@ -5,8 +5,8 @@ git:
 
 branches:
   only:
-    - develop
-#    - /^v\d+\.\d+(\.\d+)?$/
+#    - develop
+    - /^v\d+\.\d+(\.\d+)?$/
 
 dist: xenial
 
