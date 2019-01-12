@@ -5,20 +5,34 @@ git:
 
 branches:
   only:
-#    - develop
-    - /^v\d+\.\d+(\.\d+)?$/
-
-os:
-- linux
-- osx
-- windows
+    - develop
+#    - /^v\d+\.\d+(\.\d+)?$/
 
 dist: xenial
 
 env:
-  - VERSION="$TRAVIS_TAG" QT_VERSION="5.12.0" QTC_VERSION="4.8.0"
-  - VERSION="$TRAVIS_TAG" QT_VERSION="5.12.0" QTC_VERSION="4.7.0"
+  global:
+    - VERSION="$TRAVIS_TAG"
+    - QT_VERSION="5.12.0"
 
+matrix:
+  include:
+  - os: linux
+    env: QTC_VERSION="4.7.0" ARCH="x64"
+  - os: linux
+    env: QTC_VERSION="4.8.0" ARCH="x64"
+  - os: osx
+    env: QTC_VERSION="4.7.0" ARCH="x64"
+  - os: osx
+    env: QTC_VERSION="4.8.0" ARCH="x64"
+  - os: windows
+    env: QTC_VERSION="4.7.0" ARCH="x86"
+  - os: windows
+    env: QTC_VERSION="4.8.0" ARCH="x86"
+  - os: windows
+    env: QTC_VERSION="4.7.0" ARCH="x64"
+  - os: windows
+    env: QTC_VERSION="4.8.0" ARCH="x64"
 
 # for some reason qt-creator packages is archives as 7z archives for all operation systems,
 # so we need p7zip for macOS and Ubnuntu

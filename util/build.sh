@@ -18,7 +18,7 @@ export QTC_BUILD="$PWD/qtcreator"
 rm -rf build && mkdir -p build && cd build
 if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
     NATIVE_ROOT_PATH=$(echo $ROOT | sed 's|/c|C:|g')
-    cmd.exe /C '"C:/Program Files (x86)/Microsoft Visual Studio/2017/BuildTools/VC/Auxiliary/Build/vcvarsall.bat" x86 && qmake '$NATIVE_ROOT_PATH'/conan.pro && nmake'
+    cmd.exe /C '"C:/Program Files (x86)/Microsoft Visual Studio/2017/BuildTools/VC/Auxiliary/Build/vcvarsall.bat" '$ARCH' && qmake '$NATIVE_ROOT_PATH'/conan.pro && nmake'
 else
     qmake "$ROOT/conan.pro"
     make -j2
@@ -37,19 +37,19 @@ if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     PLUGIN_FILE_NAME="lib$PLUGIN_NAME.dylib"
     PLUGIN_FILE_SOURCE_DIR="qtcreator/bin/Qt Creator.app/Contents/PlugIns"
     PLUGIN_FILE_TARGET_DIR="dist/Contents/PlugIns"
-    ARCHIVE_FILE_NAME=$PLUGIN_NAME'-'$VERSION'_qtcreator-'$QTC_VERSION'_'$TRAVIS_OS_NAME'-x64.tar.gz'
+    ARCHIVE_FILE_NAME=$PLUGIN_NAME'-'$VERSION'_qtcreator-'$QTC_VERSION'_'$TRAVIS_OS_NAME'-'$ARCH'.tar.gz'
 fi
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     PLUGIN_FILE_NAME="lib$PLUGIN_NAME.so"
     PLUGIN_FILE_SOURCE_DIR="qtcreator/lib/qtcreator/plugins"
     PLUGIN_FILE_TARGET_DIR="dist/lib/qtcreator/plugins"
-    ARCHIVE_FILE_NAME=$PLUGIN_NAME'-'$VERSION'_qtcreator-'$QTC_VERSION'_'$TRAVIS_OS_NAME'-x64.tar.gz'
+    ARCHIVE_FILE_NAME=$PLUGIN_NAME'-'$VERSION'_qtcreator-'$QTC_VERSION'_'$TRAVIS_OS_NAME'-'$ARCH'.tar.gz'
 fi
 if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
     PLUGIN_FILE_NAME="$PLUGIN_NAME"4".dll"
     PLUGIN_FILE_SOURCE_DIR="qtcreator/lib/qtcreator/plugins"
     PLUGIN_FILE_TARGET_DIR="dist/lib/qtcreator/plugins"
-    ARCHIVE_FILE_NAME=$PLUGIN_NAME'-'$VERSION'_qtcreator-'$QTC_VERSION'_'$TRAVIS_OS_NAME'-x86.zip'
+    ARCHIVE_FILE_NAME=$PLUGIN_NAME'-'$VERSION'_qtcreator-'$QTC_VERSION'_'$TRAVIS_OS_NAME'-'$ARCH'.zip'
 fi
 
 ls -l "$PLUGIN_FILE_SOURCE_DIR/$PLUGIN_FILE_NAME"
