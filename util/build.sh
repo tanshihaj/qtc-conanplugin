@@ -4,10 +4,7 @@ set -e
 
 SELF_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-export PATH="$PWD/qt/bin/:$PATH"
-#if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
-#    export PATH="/c/Qt/Tools/mingw730_64/bin:$PATH"
-#fi
+export PATH="$PWD/qtmodule/bin/:$PATH"
 ROOT="$SELF_PATH/.."
 echo `qmake --version`
 
@@ -23,33 +20,28 @@ else
     qmake "$ROOT/conan.pro"
     make -j2
 fi
-#if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
-#    mingw32-make
-#else
-#    make
-#fi
 cd ..
 
 # Create archive
-if [ -z "$VERSION" ]; then VERSION="debug"; fi
+if [ -z "$TRAVIS_TAG" ]; then TRAVIS_TAG="debug"; fi
 PLUGIN_NAME="Conan"
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     PLUGIN_FILE_NAME="lib$PLUGIN_NAME.dylib"
     PLUGIN_FILE_SOURCE_DIR="qtcreator/bin/Qt Creator.app/Contents/PlugIns"
     PLUGIN_FILE_TARGET_DIR="dist/Contents/PlugIns"
-    ARCHIVE_FILE_NAME=$PLUGIN_NAME'-'$VERSION'_qtcreator-'$QTC_VERSION'_'$TRAVIS_OS_NAME'-'$ARCH'.tar.gz'
+    ARCHIVE_FILE_NAME=$PLUGIN_NAME'-'$TRAVIS_TAG'_qtcreator-'$QTC_VERSION'_'$TRAVIS_OS_NAME'-'$ARCH'.tar.gz'
 fi
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     PLUGIN_FILE_NAME="lib$PLUGIN_NAME.so"
     PLUGIN_FILE_SOURCE_DIR="qtcreator/lib/qtcreator/plugins"
     PLUGIN_FILE_TARGET_DIR="dist/lib/qtcreator/plugins"
-    ARCHIVE_FILE_NAME=$PLUGIN_NAME'-'$VERSION'_qtcreator-'$QTC_VERSION'_'$TRAVIS_OS_NAME'-'$ARCH'.tar.gz'
+    ARCHIVE_FILE_NAME=$PLUGIN_NAME'-'$TRAVIS_TAG'_qtcreator-'$QTC_VERSION'_'$TRAVIS_OS_NAME'-'$ARCH'.tar.gz'
 fi
 if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
     PLUGIN_FILE_NAME="$PLUGIN_NAME"4".dll"
     PLUGIN_FILE_SOURCE_DIR="qtcreator/lib/qtcreator/plugins"
     PLUGIN_FILE_TARGET_DIR="dist/lib/qtcreator/plugins"
-    ARCHIVE_FILE_NAME=$PLUGIN_NAME'-'$VERSION'_qtcreator-'$QTC_VERSION'_'$TRAVIS_OS_NAME'-'$ARCH'.zip'
+    ARCHIVE_FILE_NAME=$PLUGIN_NAME'-'$TRAVIS_TAG'_qtcreator-'$QTC_VERSION'_'$TRAVIS_OS_NAME'-'$ARCH'.zip'
 fi
 
 ls -l "$PLUGIN_FILE_SOURCE_DIR/$PLUGIN_FILE_NAME"
