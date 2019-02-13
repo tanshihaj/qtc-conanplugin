@@ -29,7 +29,7 @@ InstallStepConfigWidget::~InstallStepConfigWidget() {
 }
 
 QString InstallStepConfigWidget::summaryText() const {
-    auto resultCommand = QStringLiteral("<b>Conan:</b> ") + m_installStep->processParameters()->command() + QChar::Space + m_installStep->processParameters()->arguments();
+    QString resultCommand = QStringLiteral("<b>Conan:</b> ") + m_installStep->processParameters()->command() + QChar::Space + m_installStep->processParameters()->arguments();
     return resultCommand;
 }
 
@@ -39,7 +39,7 @@ QString InstallStepConfigWidget::displayName() const {
 
 void InstallStepConfigWidget::updateUi() {
     m_ui->additionalArgumentsLineEdit->setText(m_installStep->additionalArguments());
-    auto resultCommand = m_installStep->processParameters()->command() + QChar::Space + m_installStep->processParameters()->arguments();
+    QString resultCommand = m_installStep->processParameters()->command() + QChar::Space + m_installStep->processParameters()->arguments();
     m_ui->resultCommandLineEdit->setText(resultCommand);
     updateSummary();
 }
